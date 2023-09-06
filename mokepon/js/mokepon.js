@@ -22,11 +22,11 @@ function iniciarJuego() {
     botonReiniciar.addEventListener('click',reiniciarJuego);
 }
 function seleccionarMascotaJugador() {
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+    /* let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
     sectionSeleccionarMascota.style.display="none";
     
     let sectionSeleccionarAtaque= document.getElementById('seleccionar-ataque');
-    sectionSeleccionarAtaque.style.display="block";
+    sectionSeleccionarAtaque.style.display="block"; */
 
     let inputHipodogue = document.getElementById('hipodogue');
     let inputCapipepo = document.getElementById('capipepo');
@@ -43,11 +43,18 @@ function seleccionarMascotaJugador() {
         spanMascotaJugador.innerHTML = 'Ratigueya';
     } else {
         alert('SELECCIONA UNA MASCOTA');
-        //return;
+        return;
     }
     seleccionarMascotaEnemigo();
 }
 function seleccionarMascotaEnemigo() {
+    /*  */
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+    sectionSeleccionarMascota.style.display="none";
+    
+    let sectionSeleccionarAtaque= document.getElementById('seleccionar-ataque');
+    sectionSeleccionarAtaque.style.display="flex";
+    /*  */
     let mascotaAleatorio = aleatorio(1, 3);
     let spanMascotaEnemigo = document.getElementById('mascota-enemigo');
 
@@ -117,22 +124,35 @@ function revisarVidas(){
          crearMensajeFinal("FELICITACIONES GANASTE")
          
     }else if(vidasJugador==0){
-        crearMensajeFinal("PERDISTE")
+        crearMensajeFinal("PERDISTE p")
     }else{
 
     }
 }
 function crearMensaje(resultado) {
-    let seccionMensajes = document.getElementById('mensajes');
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = 'Tu mascota ataco con ' + ataqueJugador + ' la mascota del enemigo ataco con ' + ataqueEnemigo + '-'+resultado;
-    seccionMensajes.appendChild(parrafo)
+    let seccionMensajes = document.getElementById('resultado');
+    let ataquesDelJugador = document.getElementById('ataques-del-jugador');
+    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
+
+    let nuevoAtaqueDelJugador = document.createElement('p');
+    let nuevoAtaqueDelEnemigo = document.createElement('p');
+
+    seccionMensajes.innerHTML = resultado;
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+
+    //let parrafo = document.createElement('p');
+    //parrafo.innerHTML = 'Tu mascota ataco con ' + ataqueJugador + ' la mascota del enemigo ataco con ' + ataqueEnemigo + '-'+resultado;
+     
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
 function crearMensajeFinal(resultadoFinal) {
-    let seccionMensajes = document.getElementById('mensajes');
-    let parrafo = document.createElement('p');
-    parrafo.innerHTML = resultadoFinal;
-    seccionMensajes.appendChild(parrafo);
+    let seccionMensajes = document.getElementById('resultado');
+    
+    seccionMensajes.innerHTML = resultadoFinal;
+
+    
 
     let botonFuego = document.getElementById('boton-fuego');
     botonFuego.disabled = true
